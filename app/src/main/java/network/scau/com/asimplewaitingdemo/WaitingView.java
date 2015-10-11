@@ -24,11 +24,15 @@ public class WaitingView extends RelativeLayout {
 
     private Context context;
 
-    private float circleRadius = 20f;
+    private static float circleRadius = 20f;
     private float rotatoRadius;
     private long TIME = 1400;
 
-    private int color = Color.GRAY;
+    //小球颜色
+    private static int color = Color.WHITE;
+
+    //背景色
+    private static int backgroundColor = Color.GRAY;
 
     //重置动画flag
     private static boolean reset = false;
@@ -70,6 +74,8 @@ public class WaitingView extends RelativeLayout {
     private Animation scale_small, scale_big, scale_bigger;
     private Animation alpha_low;
 
+    private static int windowWidth = 300;
+    private static int windowHeight = 300;
 
     //-------------------------------------------------
 
@@ -89,13 +95,18 @@ public class WaitingView extends RelativeLayout {
     private static PopupWindow popupWindow;
 
 
-    public static void showWaitingView(Context context, View view, int color, float radius) {
+    public static void showWaitingView(Context context, View view,int width,int height, int thecolor, float theradius,int thebackgroundColor ) {
 
         wv = new WaitingView(context);
-        wv.setCircleRadius(radius);
-        wv.setColor(color);
+        color = thecolor;
+        circleRadius  = theradius;
+        windowWidth = width;
+        windowHeight = height;
+        backgroundColor = thebackgroundColor;
 
         View layoutView = LayoutInflater.from(context).inflate(R.layout.pupop, null);
+        layoutView.setBackgroundColor(backgroundColor);
+
         wv = (WaitingView) layoutView.findViewById(R.id.id_wv);
 
         wv.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +118,7 @@ public class WaitingView extends RelativeLayout {
         });
 
 
-        popupWindow = new PopupWindow(layoutView, 300, 300,
+        popupWindow = new PopupWindow(layoutView, windowWidth, windowHeight,
                 false);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         wv.start();
@@ -119,6 +130,8 @@ public class WaitingView extends RelativeLayout {
         wv = new WaitingView(context);
 
         View layoutView = LayoutInflater.from(context).inflate(R.layout.pupop, null);
+        layoutView.setBackgroundColor(backgroundColor);
+
         wv = (WaitingView) layoutView.findViewById(R.id.id_wv);
 
         wv.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +143,7 @@ public class WaitingView extends RelativeLayout {
         });
 
 
-        popupWindow = new PopupWindow(layoutView, 300, 300,
+        popupWindow = new PopupWindow(layoutView, windowWidth, windowHeight,
                 false);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         wv.start();
@@ -144,6 +157,8 @@ public class WaitingView extends RelativeLayout {
     public static void close() {
         wv.dismiss();
     }
+
+
 
     //---------------------------------------------------
 
@@ -166,13 +181,28 @@ public class WaitingView extends RelativeLayout {
         init();
     }
 
-
-    public void setCircleRadius(float circleRadius) {
-        this.circleRadius = circleRadius;
+    public static void setBackground(int backgroundColor) {
+        backgroundColor = backgroundColor;
     }
 
-    public void setColor(int color) {
-        this.color = color;
+    public static void setCircleRadius(float circleRadius) {
+        circleRadius = circleRadius;
+    }
+
+    public static void setColor(int color) {
+        color = color;
+    }
+
+    public static int getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public static float getCircleRadius() {
+        return circleRadius;
+    }
+
+    public static int getColor() {
+        return color;
     }
 
     private void init() {
