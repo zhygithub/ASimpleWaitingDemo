@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <network.scau.com.asimplewaitingdemo.CircleView
+        android:id="@+id/id_cv1"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <network.scau.com.asimplewaitingdemo.CircleView
+        android:id="@+id/id_cv2"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/id_cv1"
+        />
+
+    <network.scau.com.asimplewaitingdemo.CircleView
+        android:id="@+id/id_cv3"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/id_cv1"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
